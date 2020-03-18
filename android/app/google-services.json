@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "950980283992",
+    "firebase_url": "https://rfirebase-1f1a4.firebaseio.com",
+    "project_id": "rfirebase-1f1a4",
+    "storage_bucket": "rfirebase-1f1a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950980283992:android:f052c9187d4940965ac42d",
+        "android_client_info": {
+          "package_name": "com.maiproone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950980283992-jcklhine035kd6eunshg1g0es6352e6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAI6I5Sk7sjjdcy1jSrZ0YafxpgV1SQK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950980283992-jcklhine035kd6eunshg1g0es6352e6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
