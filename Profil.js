@@ -49,6 +49,9 @@ function Profil({route, navigation, image, onImagePicked}) {
       } else {
         uploadImage(response.uri, user.uid + user.email)
           .then(() => {
+           firebase.auth().currentUser.updateProfile({
+              photoURL: 'ozer',
+            });
             Alert.alert('Success');
           })
           .catch(error => {
