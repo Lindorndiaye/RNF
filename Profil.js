@@ -19,12 +19,28 @@ import ImagePicker from 'react-native-image-picker';
 import {firebase} from '@react-native-firebase/storage';
 
 function Profil({route, navigation, image, onImagePicked}) {
+  const [photo, setPhoto] = useState();
+
   useEffect(() => {
     if (route.params?.verfy) {
       // Post updated, do something with `route.params.post`
       // For example, send the post to the server
     }
+    // Retrive Image
+    const ref = firebase.storage().ref();
+    ref
+      .child(auth().currentUser.photoURL)
+      .getDownloadURL()
+      .then(url => {
+        console.log(url);
+        setPhoto(url);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.log(error);
+      });
   }, [route.params?.verify]);
+
   const user = auth().currentUser;
 
   const [userDetail, setUserDetail] = useState({
@@ -47,10 +63,14 @@ function Profil({route, navigation, image, onImagePicked}) {
       if (response.error) {
         console.log('image error');
       } else {
-        uploadImage(response.uri, user.uid + user.email)
-          .then(() => {
-           firebase.auth().currentUser.updateProfile({
-              photoURL: 'ozer',
+        uploadImage(
+          response.uri,
+          `${user.uid}${user.email}.${response.type.split('/')[1]}`,
+        )
+          .then(resp => {
+            console.log(resp.metadata.fullPath);
+            firebase.auth().currentUser.updateProfile({
+              photoURL: resp.metadata.fullPath,
             });
             Alert.alert('Success');
           })
@@ -101,7 +121,7 @@ function Profil({route, navigation, image, onImagePicked}) {
             size="xlarge"
             onPress={pickImageHandler}
             rounded
-            source={selectedImage}
+            source={{uri: photo}}
           />
           {/* <Image style={styles.avatar} source={require('./0.jpg')} /> */}
           <Text style={styles.name}>{userDetail.nom}</Text>
