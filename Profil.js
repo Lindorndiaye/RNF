@@ -50,13 +50,6 @@ function Profil({route, navigation, image, onImagePicked}) {
     pays: '',
     adresse: '',
   });
-  const [selectedImage, setSelectedImage] = useState();
-  useEffect(() => {
-    if (image) {
-      console.log('useEffect: ' + image);
-      setSelectedImage({uri: image});
-    }
-  }, [image]);
 
   function pickImageHandler() {
     ImagePicker.showImagePicker({title: 'Choisir une image'}, response => {
@@ -79,7 +72,7 @@ function Profil({route, navigation, image, onImagePicked}) {
           });
         uploadImage;
         console.log('Image: ' + response.uri);
-        setSelectedImage({uri: response.uri});
+        setPhoto(response.uri);
         //onImagePicked({uri: response.uri});
       }
     });
